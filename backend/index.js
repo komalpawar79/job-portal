@@ -30,19 +30,11 @@ app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from frontend dist
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
 //api's
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
-
-// Fallback route to serve index.html for client-side routing
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-});
 
 app.listen(PORT, ()=>{
   connectDB();
